@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Inscrição</h1>
+    <h1>CRER</h1>
+  </header>
+
+  <div class="header-ficha">
+    <h1>Ficha de inscrição</h1>
+  </div>
+  <form id="inscricaoForm" action="/inscricao" method="post">
+    <div class="ficha">
+      <header>
+        <h2>Nome:<input type="text" name="nome" style="width: 20vw;"></h2>   
+        <div>
+          <h2>Sexo:<input type="text" name="sexo"></h2>
+          <h2>Idade:<input type="text" name="idade"></h2>
+          <h2>Celular:<input type="text" name="celular"></h2>
+        </div> 
+        <h2 style="margin-bottom: 2%;">Endereço:<input type="text" name="endereco" style="width: 20vw;"></h2>
+      </header>
+
+      <h2>
+        Frequenta alguma igreja? 
+        Sim <input id="frequentaIgrejaSim" type="checkbox" name="frequentaIgreja" value="Sim">
+        Não <input id="frequentaIgrejaNao" type="checkbox" name="frequentaIgreja" value="Não"> 
+        Qual: <input type="text" name="igreja">
+      </h2>
+      <h2>Frequenta alguma célula-
+        Sim<input id="frequentaCelulaSim" type="checkbox" name="frequentaCelula" value="Sim">
+        Não<input type="checkbox" id="frequentaCelulaNao" name="frequentaCelula" value="Não"> Qual: <input type="text" name="celula"></h2>
+      
+      <div>
+        <h2>Líder: <input type="text" name="lider"></h2>
+        <h2>Pastor: <input type="text" name="pastor"></h2>
+        <h2>Convidado por quem: <input type="text" name="convidadoPor"></h2>
+      </div>
+
+      <h2>Remédio controlado- Sim<input id="sim" type="checkbox" name="remedioControlado" value="Sim"> Não<input type="checkbox" id="nao" name="remedioControlado" value="Não"> Qual: <input type="text" name="remedio"></h2>
+      <h2>Informe algum problema de saúde ou necessidade: <input type="text" name="problemaSaude" style="width: 80vw; height: 10vh; display: flex; margin-bottom: 2%;"></h2>
+      
+      <footer>
+        <h2>Parentes próximos</h2>
+        <h2>Nome: <input type="text" name="parenteNome"></h2>
+        <h2>Grau de parentesco: <input type="text" name="grauParentesco"></h2>
+        <h2>Celular: <input type="text" name="parenteCelular"></h2>
+      </footer>
+
+      <button type="submit">Enviar inscrição</button>
+
+    </div>
+  </form>
+  <div id="message" style="display: none;"></div>
+  <script src="prog.js"></script>
+</body>
+</html>
