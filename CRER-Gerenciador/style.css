@@ -1,0 +1,47 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+body header{
+    background: #020043;
+    width: 100vw;
+    height: 16vh;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    align-items: center;
+}body header h1{
+    margin: 2%;
+}
+
+body button{
+    background: #FF3C00;
+    width: 45vw;
+    height: 25vh;
+    font-size: 60px;
+    color: #fff;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}.butoes{
+    display: flex;
+    justify-content: space-around;
+    margin-top: -1%;
+} body button:hover{
+    background: #ff4f19;
+    width: 47vw;
+    height: 27vh;
+    font-size: 60px;
+    transition: 1s;
+    color: #fff;
+    border-radius: 20px;
+    border: none;
+}
