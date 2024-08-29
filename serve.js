@@ -61,17 +61,6 @@ app.post('/inscricao', async (req, res) => {
     }
 });
 
-// Rota GET para buscar todos os documentos
-app.get('/api/pessoas', async (req, res) => {
-    try {
-        const pessoas = await Pessoa.find();
-        res.json(pessoas);
-    } catch (err) {
-        console.error('Erro ao buscar documentos:', err);
-        res.status(500).send('Erro ao buscar documentos: ' + err.message);
-    }
-});
-
 // Define a porta e inicia o servidor
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
