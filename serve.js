@@ -1,5 +1,5 @@
 const express = require('express');
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 const cors = require('cors');
 
 // Inicializa o app Express
@@ -13,49 +13,45 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public')); // Servir arquivos estáticos
 
-// Configuração do cliente MongoDB
-const uri = "mongodb+srv://JoelCaldas:Jorelboy11@cluster0.8iyem.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const client = new MongoClient(uri);
+// Conexão com o MongoDB usando Mongoose
+const mongoUri = "mongodb+srv://JoelCaldas:Jorelboy11@cluster0.8iyem.mongodb.net/meuBancoDeDados?retryWrites=true&w=majority";
+mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Erro de conexão:'));
+db.once('open', () => {
+    console.log('Conectado ao banco de dados');
+});
+
+// Definição do esquema e modelo
+const pessoaSchema = new mongoose.Schema({
+    // Defina o esquema de acordo com os dados esperados
+});
+
+const Pessoa = mongoose.model('Pessoa', pessoaSchema);
 
 // Rota POST para inscrição
 app.post('/inscricao', async (req, res) => {
     try {
         console.log('Recebendo dados do formulário:', req.body);
-        await client.connect();
-        console.log('Conectado ao banco de dados');
-        const database = client.db('meuBancoDeDados');
-        const collection = database.collection('minhaColecao');
-
-        const doc = req.body;
-        console.log('Documento a ser inserido:', doc);
-        const result = await collection.insertOne(doc);
+        const doc = new Pessoa(req.body);
+        const result = await doc.save();
         console.log('Documento inserido com sucesso:', result);
-        res.status(201).send(`Documento inserido com o ID: ${result.insertedId}`);
+        res.status(201).send(`Documento inserido com o ID: ${result._id}`);
     } catch (err) {
         console.error('Erro ao inserir documento:', err);
         res.status(500).send('Erro ao inserir documento: ' + err.message);
-    } finally {
-        await client.close();
-        console.log('Conexão com o banco de dados fechada');
     }
 });
 
 // Rota GET para buscar todos os documentos
 app.get('/api/pessoas', async (req, res) => {
     try {
-        await client.connect();
-        console.log('Conectado ao banco de dados');
-        const database = client.db('meuBancoDeDados');
-        const collection = database.collection('minhaColecao');
-
-        const pessoas = await collection.find().toArray();
+        const pessoas = await Pessoa.find();
         res.json(pessoas);
     } catch (err) {
         console.error('Erro ao buscar documentos:', err);
         res.status(500).send('Erro ao buscar documentos: ' + err.message);
-    } finally {
-        await client.close();
-        console.log('Conexão com o banco de dados fechada');
     }
 });
 
