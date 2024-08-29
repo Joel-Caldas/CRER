@@ -47,6 +47,17 @@ const pessoaSchema = new mongoose.Schema({
 
 const Pessoa = mongoose.model('Pessoa', pessoaSchema);
 
+// Rota GET para buscar todos os documentos
+app.get('/api/pessoas', async (req, res) => {
+    try {
+        const pessoas = await Pessoa.find();
+        res.json(pessoas);
+    } catch (err) {
+        console.error('Erro ao buscar documentos:', err);
+        res.status(500).send('Erro ao buscar documentos: ' + err.message);
+    }
+});
+
 // Rota POST para inscrição
 app.post('/inscricao', async (req, res) => {
     try {
