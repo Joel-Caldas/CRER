@@ -25,7 +25,24 @@ db.once('open', () => {
 
 // Definição do esquema e modelo
 const pessoaSchema = new mongoose.Schema({
-    // Defina o esquema de acordo com os dados esperados
+    nome: String,
+    sexo: String,
+    idade: Number,
+    celular: String,
+    endereco: String,
+    frequentaIgreja: String,
+    igreja: String,
+    frequentaCelula: String,
+    celula: String,
+    lider: String,
+    pastor: String,
+    convidadoPor: String,
+    remedioControlado: String,
+    remedio: String,
+    problemaSaude: String,
+    parenteNome: String,
+    grauParentesco: String,
+    parenteCelular: String
 });
 
 const Pessoa = mongoose.model('Pessoa', pessoaSchema);
@@ -56,5 +73,5 @@ app.get('/api/pessoas', async (req, res) => {
 });
 
 // Define a porta e inicia o servidor
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
